@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+
+# Editor files
+*.swp
+*.bak
+*.tmp
+*~
+
+# Build artifacts
+*.o
+*.d
+*.so
+*.a
+.deps/
+build.h
+
+# Executables
+jbdtool
+jbdtool.exe
+
+# Archives/packages
+*.zip
+jbdtool_*_static.zip
+
+# Logs and runtime
+*.log
+*.pid
+*.out
+*.err
+*.cache
+
+# IDE/Editor directories
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporary files
+*.orig
+*.rej
