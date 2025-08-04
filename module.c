@@ -16,6 +16,8 @@ LICENSE file in the root directory of this source tree.
 extern mybmm_module_t jbd_module;
 #if !defined(__WIN32) && !defined(__WIN64)
 extern mybmm_module_t bt_module;
+#endif
+#if !defined(__WIN32) && !defined(__WIN64) && !defined(__APPLE__)
 extern mybmm_module_t can_module;
 #endif
 extern mybmm_module_t ip_module;
@@ -58,7 +60,11 @@ mybmm_module_t *mybmm_load_module(mybmm_config_t *conf, char *name, int type) {
 		mp = &bt_module;
 #endif
 	} else if (strcmp(name,"can")==0) {
+#if !defined(__APPLE__)
 		mp = &can_module;
+#else
+		mp = 0; /* CAN not supported on macOS */
+#endif
 #endif
 	} else if (strcmp(name,"ip")==0) {
 		mp = &ip_module;

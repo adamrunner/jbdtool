@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 #include "mybmm.h"
 #include "jbd.h"
 #include "jbd_info.h"
-#ifndef __WIN32
+#if !defined(__WIN32) && !defined(__APPLE__)
 #include <linux/can.h>
 #endif
 

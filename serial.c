@@ -202,18 +202,24 @@ static int set_interface_attribs (int fd, int speed, int data, int parity, int s
 	case 57600:     rate = B57600;   break;
 	case 115200:	rate = B115200;   break;
 	case 230400:	rate = B230400;   break;
+#ifndef __APPLE__
 	case 460800:	rate = B460800;   break;
 	case 500000:	rate = B500000;   break;
 	case 576000:	rate = B576000;   break;
 	case 921600:	rate = B921600;   break;
+#endif
 	case 600:       rate = B600;      break;
 	case 300:       rate = B300;      break;
 	case 150:       rate = B150;      break;
 	case 110:       rate = B110;      break;
 	default:
+#ifndef __APPLE__
 		tty.c_cflag &= ~CBAUD;
 		tty.c_cflag |= CBAUDEX;
 		rate = speed;
+#else
+		rate = B9600; /* Default fallback for unsupported rates */
+#endif
 		break;
 	}
 	cfsetispeed(&tty, rate);
